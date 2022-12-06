@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:34 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/04 18:25:11 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/05 13:17:22 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static	char *extract_key(char *str)
 	return (key);
 }
 
-static char *substitute_env(char *line, char *env_offset, char *env_key)
+static char *substitute_env(char *line, char *env_offset, char *env_key, int offset)
 {
 	char 	*env_value;
 	char	*buf;
@@ -37,19 +37,21 @@ static char *substitute_env(char *line, char *env_offset, char *env_key)
 	if (!env_value)
 		env_value = "";
 	buf = ft_strjoin(env_value, env_offset + ft_strlen(env_key) + 1);
-	*env_offset = 0;
+	printf(">>>line: %s\n>>>env_offset: %s\n", line, env_offset);
+	line[offset] = 0;
+	printf(">>env_offet: %s\n>>line: %s\n>>buf: %s\n", env_offset, line, buf);
 	sub_line = ft_strjoin(line, buf);
 	free(buf);
 	return (sub_line);
 }
 
-static char	*substitute_question_mark(char *line, char *qm_offset)
+static char	*substitute_question_mark(char *line, char *qm_offset, int offset)
 {
 	char	*buf;
 	char	*sub_line;
 
 	buf = ft_strjoin(ft_itoa(g_exit_code), qm_offset + 2);
-	*qm_offset = 0;
+	line[offset] = 0;
 	sub_line = ft_strjoin(line, buf);
 	free(buf);
 	return (sub_line);	
@@ -59,25 +61,29 @@ static char	*search_substitution(char *line)
 {
 	char	*key;
 	char	*sub_line;
+	int		i;
 
+	i = 0;
 	sub_line = line;
 	while (*line)
 	{
 		if (*line == '$')
 		{
 			printf("line: %s\n", line);
+			printf("sub_line: %s\n", sub_line);
 			if (*(line + 1) == '?')
 			{
-				sub_line = substitute_question_mark(sub_line, line);
+				sub_line = substitute_question_mark(sub_line, line, i);
 				line++;
 			}
 			else
 			{
 				key = extract_key(line);
-				sub_line = substitute_env(sub_line, line, key);
+				sub_line = substitute_env(sub_line, line, key, i);
 				line += ft_strlen(key);
 			}
 		}
+		i++;
 		line++;
 	}
 	return (sub_line);
