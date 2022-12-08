@@ -1,31 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/01 15:57:16 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/07 16:47:47 by bgenie           ###   ########.fr       */
+/*   Created: 2022/12/07 16:59:14 by bgenie            #+#    #+#             */
+/*   Updated: 2022/12/08 17:18:41 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-// TEST
-# include "../leaks_checker/leaks.h"
-// TEST
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-# include "libft.h"
-# if BUFFER_SIZE <= 0
-#  define BUFFER_SIZE 128
-# endif
+#include "minishell.h"
 
-char	*ft_append(char *line, char buffer);
-char	*ft_read(int fd, char *buffer);
-char	*ft_getline(int fd);
-char	*get_next_line(int fd);
+void	free_tab(char **tab)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab[i]);
+	free(tab - 1);
+}
+
+char	**copy_envp(char **envp)
+{
+	int		i;
+	char	**envpc;
+
+	i = 0;
+	while (envp[i])
+		i++;
+	envpc = malloc(sizeof(char *) * (i + 1));
+	if (!envpc)
+		return (NULL);
+	i = 0;
+	while (envp[i])
+	{
+		envpc[i] = envp[i];
+		i++;
+	}
+	envpc[i] = NULL;
+	return (envpc);
+}

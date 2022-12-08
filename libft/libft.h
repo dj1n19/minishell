@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:45:06 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/16 16:08:23 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/07 16:45:32 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+// TEST
+# include "../leaks_checker/leaks.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
