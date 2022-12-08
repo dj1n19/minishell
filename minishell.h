@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:44 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/08 17:23:26 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/08 19:17:04 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ char	**export(char *env, char **envp);
 */
 void    free_tab(char **tab);
 char	**copy_envp(char **envp);
+char	*ft_getenv(char *key, char **envp);
 
 /*
 ** substitution
 */
-char	*search_substitution(char *line);
+char	*search_substitution(char *line, t_cmd *cmd);
 
 #endif

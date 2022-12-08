@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:34 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/08 17:53:38 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/08 19:24:53 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **envp)
 		prompt = getenv("PWD");
 		prompt = ft_strjoin(prompt, " ~> ");
 		line = readline(prompt);
-		line = search_substitution(line);
+		line = search_substitution(line, &cmd);
 		free(prompt);
 		cmdv = ft_split(line, ' ');
 		free(line);

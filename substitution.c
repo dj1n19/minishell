@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:10:41 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/07 17:14:00 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/08 19:16:15 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static char	*extract_key(char *str)
 	return (key);
 }
 
-static char	*substitute_env(char *line, char *env_offset, char *env_key)
+static char	*substitute_env(char *line, char *env_offset, char *env_key, t_cmd *cmd)
 {
 	char	*env_value;
 	char	*buf;
 	char	*sub_line;
 	char	*line_env_offset;
 
-	env_value = getenv(env_key);
+	env_value = ft_getenv(env_key, cmd->envp);
 	if (!env_value)
 		env_value = "";
 	buf = ft_strjoin(env_value, env_offset + ft_strlen(env_key) + 1);
@@ -66,7 +66,7 @@ static char	*substitute_question_mark(char *line, char *qm_offset)
 	return (sub_line);
 }
 
-char	*search_substitution(char *line)
+char	*search_substitution(char *line, t_cmd *cmd)
 {
 	char	*key;
 	char	*sub_line;
@@ -83,7 +83,7 @@ char	*search_substitution(char *line)
 			else
 			{
 				key = extract_key(line);
-				sub_line = substitute_env(sub_line, line, key);
+				sub_line = substitute_env(sub_line, line, key, cmd);
 				line += ft_strlen(key);
 				free(key);
 			}

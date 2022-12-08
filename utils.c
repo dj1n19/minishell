@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:59:14 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/08 17:18:41 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/08 19:26:31 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,21 @@ char	**copy_envp(char **envp)
 	}
 	envpc[i] = NULL;
 	return (envpc);
+}
+
+char	*ft_getenv(char *key, char **envp)
+{
+	printf("===%s\n", key);
+	while (*envp)
+	{
+		if (!ft_strncmp(*envp, key, ft_strlen(key)))
+		{
+			while (**envp != '=')
+				(*envp)++;
+			(*envp)++;
+			return (*envp);
+		}
+		envp++;
+	}
+	return(NULL);
 }
