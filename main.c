@@ -6,13 +6,13 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:34 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/08 19:24:53 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/12 18:53:49 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	parse_cmd(t_cmd *cmd)
+static char	**parse_cmd(t_cmd *cmd)
 {
 	if (!ft_strncmp(cmd->name, "exit", 5))
 		b_exit(g_exit_code, cmd);
@@ -23,13 +23,16 @@ static int	parse_cmd(t_cmd *cmd)
 	else if (!ft_strncmp(cmd->name, "env", 4))
 		b_env(cmd->envp);
 	else if (!ft_strncmp(cmd->name, "export", 7))
-		cmd->envp = export(ft_strdup(*cmd->argv), cmd->envp);
+	{
+		if (cmd->argv)
+			cmd->envp = b_export(ft_strdup(*cmd->argv), cmd->envp);
+	}
 	else
 	{
 		printf("minishell 🙊 => %s: command not found\n", cmd->name);
 		g_exit_code = 127;
 	}
-	return (0);
+	return (cmd->envp);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -57,10 +60,12 @@ int	main(int argc, char **argv, char **envp)
 		if (!cmdv)
 			b_exit(1, &cmd);
 		cmd.name = cmdv[0];
-		cmd.argv = &cmdv[1];
-		if (parse_cmd(&cmd) == -1)
-			b_exit(1, &cmd);
-		free_tab(cmd.argv);
+		if (cmdv[1])
+			cmd.argv = &cmdv[1];
+		else
+			cmd.argv = NULL;
+		cmd.envp = parse_cmd(&cmd);
+		free(cmdv);
 	}
 	return (0);
 }

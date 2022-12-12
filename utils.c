@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:59:14 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/08 19:26:31 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/12 19:05:48 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab[i]);
-	free(tab - 1);
+	if (tab)
+	{
+		while (tab[i])
+			free(tab[i++]);
+		free(tab[i]);
+		free(tab);
+	}
 }
 
 char	**copy_envp(char **envp)
@@ -37,7 +40,7 @@ char	**copy_envp(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		envpc[i] = envp[i];
+		envpc[i] = ft_strdup(envp[i]);
 		i++;
 	}
 	envpc[i] = NULL;
@@ -46,17 +49,20 @@ char	**copy_envp(char **envp)
 
 char	*ft_getenv(char *key, char **envp)
 {
-	printf("===%s\n", key);
-	while (*envp)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (envp[i])
 	{
-		if (!ft_strncmp(*envp, key, ft_strlen(key)))
+		if (!ft_strncmp(envp[i], key, ft_strlen(key)))
 		{
-			while (**envp != '=')
-				(*envp)++;
-			(*envp)++;
-			return (*envp);
+			j = 0;
+			while (envp[i][j] != '=')
+				j++;
+			return (&envp[i][j + 1]);
 		}
-		envp++;
+		i++;
 	}
 	return(NULL);
 }

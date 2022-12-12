@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:44 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/08 19:17:04 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/10 16:04:56 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void    b_echo(t_cmd *cmd);
 void    b_exit(int n, t_cmd *cmd);
 void    b_pwd(void);
 void    b_env(char **envp);
-char	**export(char *env, char **envp);
+char	**b_export(char *env, char **envp);
 
 /*
 ** utils

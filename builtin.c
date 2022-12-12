@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:40 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/08 17:56:10 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/12 19:04:30 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	b_echo(t_cmd *cmd)
 void	b_exit(int n, t_cmd *cmd)
 {
 	if (cmd->argv)
-		free_tab(cmd->argv);
+		free_tab(cmd->argv - 1);
 	if (cmd->envp)
 		free_tab(cmd->envp);
 	check_leaks();
@@ -72,30 +72,39 @@ void	b_pwd(void)
 
 void	b_env(char **envp)
 {
+	// TEST
+	int i = 0;
+
 	while (*envp)
 	{
 		printf("%s\n", *envp);
 		envp++;
+		i++; // TEST
 	}
+
+	//TEST
+	printf("envp size: %d\n", i);
 }
 
-char	**export(char *env, char **envp)
+char	**b_export(char *env, char **envp)
 {
 	int		i;
 	char	**new_envp;
 	char	*env_key;
-
 	i = 0;
-	while (env[i] != '=')
+	while (env[i] && env[i] != '=')
 		i++;
+	if ((size_t)i == ft_strlen(env))
+		return (envp);
 	env_key = ft_substr(env, 0, i);
-	printf(">>%s\n", getenv("GNAH"));
-	if (getenv(env_key))
+	printf("env_key: %s\n", env_key);
+	if (ft_getenv(env_key, envp))
 	{
 		i = 0;
-		while (ft_strncmp(envp[i], env_key, ft_strlen(env_key)))
+		while (envp[i] && ft_strncmp(envp[i], env, ft_strlen(env_key) + 1))
 			i++;
-		envp[i] = env;
+		free(envp[i]);
+		envp[i] = ft_strdup(env);
 		free(env_key);
 		return (envp);
 	}
@@ -107,7 +116,7 @@ char	**export(char *env, char **envp)
 		new_envp = realloc(envp, sizeof(char *) * (i + 2));
 		if (!new_envp)
 			return (NULL);
-		new_envp[i] = env;
+		new_envp[i] = ft_strdup(env);
 		new_envp[i + 1] = NULL;
 		return (new_envp);
 	}
