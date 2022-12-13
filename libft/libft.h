@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:45:06 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/07 16:45:32 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/13 15:14:07 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 size_t	ft_nbrsize(unsigned long nbr);
+int		ft_dquote(const char *str);
+char	**ft_split_wq(char const *s, char c);
 
 #endif

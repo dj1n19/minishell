@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:34 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/12 18:53:49 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/13 15:20:55 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ int	main(int argc, char **argv, char **envp)
 		line = readline(prompt);
 		line = search_substitution(line, &cmd);
 		free(prompt);
-		cmdv = ft_split(line, ' ');
+		cmdv = ft_split_wq(line, ' ');
+		// TEST
+		for(int i=0;cmdv[i];i++)
+			printf("-->%s\n", cmdv[i]);
+		// TEST
 		free(line);
 		if (!cmdv)
 			b_exit(1, &cmd);
