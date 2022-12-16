@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:44 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/10 16:04:56 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/17 00:26:03 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 // TEST
-# include "leaks_checker/leaks.h"
+// # include "leaks_checker/leaks.h"
 // TEST
 # include <stdlib.h>
 # include <stdio.h>
@@ -51,5 +51,10 @@ char	*ft_getenv(char *key, char **envp);
 ** substitution
 */
 char	*search_substitution(char *line, t_cmd *cmd);
+
+/*
+** split_cmd
+*/
+char	**split_cmd(char *cmd);
 
 #endif

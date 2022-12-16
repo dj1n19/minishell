@@ -9,7 +9,8 @@ NAME = minishell
 SRCS =	main.c \
 		builtin.c \
 		substitution.c \
-		utils.c
+		utils.c \
+		split_cmd.c
 
 OBJS = $(SRCS:.c=.o)
 

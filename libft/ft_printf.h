@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 22:38:08 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/07 16:46:22 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/17 00:11:11 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 // TEST
-# include "../leaks_checker/leaks.h"
+// # include "../leaks_checker/leaks.h"
 // TEST
 # include <unistd.h>
 # include <stdarg.h>

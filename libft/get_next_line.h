@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 15:57:16 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/07 16:47:47 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/17 00:11:06 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 // TEST
-# include "../leaks_checker/leaks.h"
+// # include "../leaks_checker/leaks.h"
 // TEST
 # include <unistd.h>
 # include <stdlib.h>

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:40 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/12 19:04:30 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/17 00:14:27 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	b_exit(int n, t_cmd *cmd)
 		free_tab(cmd->argv - 1);
 	if (cmd->envp)
 		free_tab(cmd->envp);
-	check_leaks();
+	// check_leaks();
 	exit((unsigned int)n);
 }
 

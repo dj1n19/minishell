@@ -49,7 +49,6 @@ SRCS = 	ft_atoi.c \
 		ft_printstr.c \
 		ft_printudec.c \
 		ft_utohex.c \
-		ft_split_wq.c \
 		ft_dquote.c
 
 BONUS = ft_lstadd_back.c \

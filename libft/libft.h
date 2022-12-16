@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:45:06 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/13 15:14:07 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/17 00:12:37 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 // TEST
-# include "../leaks_checker/leaks.h"
+// # include "../leaks_checker/leaks.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
@@ -72,6 +72,5 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 size_t	ft_nbrsize(unsigned long nbr);
 int		ft_dquote(const char *str);
-char	**ft_split_wq(char const *s, char c);
 
 #endif

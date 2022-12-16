@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:03:34 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/13 15:20:55 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/17 00:14:07 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv, char **envp)
 		line = readline(prompt);
 		line = search_substitution(line, &cmd);
 		free(prompt);
-		cmdv = ft_split_wq(line, ' ');
+		cmdv = split_cmd(line);
 		// TEST
 		for(int i=0;cmdv[i];i++)
 			printf("-->%s\n", cmdv[i]);
