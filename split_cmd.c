@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_cmd.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lolemmen  <marvin@42.fr>                   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/20 22:29:48 by lolemmen          #+#    #+#             */
+/*   Updated: 2022/12/20 22:31:15 by lethaline        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static int	has_closed_quotes(char *cmd)
@@ -67,7 +79,7 @@ static char	*substring(char *cmd)
 	while (j < i)
 		str[j++] = *cmd++;
 	str[j] = 0;
-	return (str);	
+	return (str);
 }
 
 static void	free_scmd(char **scmd)
@@ -86,14 +98,14 @@ char	**split_cmd(char *cmd)
 	count = count_word(cmd);
 	scmd = (char **) malloc(sizeof(char *) * (count + 1));
 	if (!scmd || !count)
-		return(NULL);
+		return (NULL);
 	save = scmd;
 	while (*cmd)
 	{
 		while (*cmd && *cmd == ' ')
 			cmd++;
 		if (*cmd == 0)
-			break;
+			break ;
 		*scmd = substring(cmd);
 		if (!*scmd)
 		{

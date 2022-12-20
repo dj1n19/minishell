@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lolemmen <lolemmen@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:59:14 by bgenie            #+#    #+#             */
-/*   Updated: 2022/12/12 19:05:48 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/12/20 22:38:11 by lolemmen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ char	*ft_getenv(char *key, char **envp)
 		}
 		i++;
 	}
-	return(NULL);
+	return (NULL);
 }
