@@ -24,17 +24,22 @@ typedef struct s_cmd
 	char	*name;
 	char	**argv;
 	char	**envp;
+	int		exit_code;
 }	t_cmd;
 
-int	g_exit_code;
+// extern int	exit_code;
+
+extern struct s_cmd	*g_cmd;
+
 /*
 ** builtin
 */
-void	b_echo(t_cmd *cmd);
-void	b_exit(int n, t_cmd *cmd);
+void	b_echo(void);
+void	b_exit(int n);
 void	b_pwd(void);
 void	b_env(char **envp);
 char	**b_export(char *env, char **envp);
+char	**b_unset(char *env_key, char **envp);
 
 /*
 ** utils
@@ -42,11 +47,12 @@ char	**b_export(char *env, char **envp);
 void	free_tab(char **tab);
 char	**copy_envp(char **envp);
 char	*ft_getenv(char *key, char **envp);
+int		has_key(char *env_key, char **envp);
 
 /*
 ** substitution
 */
-char	*search_substitution(char *line, t_cmd *cmd);
+char	*search_substitution(char *line);
 
 /*
 ** split_cmd

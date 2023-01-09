@@ -66,3 +66,23 @@ char	*ft_getenv(char *key, char **envp)
 	}
 	return (NULL);
 }
+
+int	has_key(char *env_key, char **envp)
+{
+	int		i;
+	char	*key;
+
+	i = 0;
+	key = ft_strjoin(env_key, "=");
+	while (envp[i])
+	{
+		if (!ft_strncmp(key, envp[i], ft_strlen(key)))
+		{
+			free(key);
+			return (i);
+		}
+		i++;
+	}
+	free(key);
+	return (0);
+}

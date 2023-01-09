@@ -27,14 +27,14 @@ static char	*extract_key(char *str)
 	return (key);
 }
 
-static char	*substitute_env(char *line, char *env_offset, char *env_key, t_cmd *cmd)
+static char	*substitute_env(char *line, char *env_offset, char *env_key)
 {
 	char	*env_value;
 	char	*buf;
 	char	*sub_line;
 	char	*line_env_offset;
 
-	env_value = ft_getenv(env_key, cmd->envp);
+	env_value = ft_getenv(env_key, g_cmd->envp);
 	if (!env_value)
 		env_value = "";
 	buf = ft_strjoin(env_value, env_offset + ft_strlen(env_key) + 1);
@@ -54,7 +54,7 @@ static char	*substitute_question_mark(char *line, char *qm_offset)
 	char	*line_qm_offset;
 	char	*exit_code;
 
-	exit_code = ft_itoa(g_exit_code);
+	exit_code = ft_itoa(g_cmd->exit_code);
 	buf = ft_strjoin(exit_code, qm_offset + 2);
 	line_qm_offset = ft_strnstr(line, qm_offset, ft_strlen(line));
 	if (line_qm_offset)
@@ -66,7 +66,7 @@ static char	*substitute_question_mark(char *line, char *qm_offset)
 	return (sub_line);
 }
 
-char	*search_substitution(char *line, t_cmd *cmd)
+char	*search_substitution(char *line)
 {
 	char	*key;
 	char	*sub_line;
@@ -83,7 +83,7 @@ char	*search_substitution(char *line, t_cmd *cmd)
 			else
 			{
 				key = extract_key(line);
-				sub_line = substitute_env(sub_line, line, key, cmd);
+				sub_line = substitute_env(sub_line, line, key);
 				line += ft_strlen(key);
 				free(key);
 			}
