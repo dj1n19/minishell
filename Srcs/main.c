@@ -53,6 +53,7 @@ void	init(void)
 	g_cmd->name = NULL;
 	g_cmd->argv = NULL;
 	g_cmd->envp = NULL;
+	g_cmd->tokens = 0;
 }
 
 __attribute__((destructor))
@@ -66,6 +67,18 @@ void	finish(void)
 			free_tab(g_cmd->envp);
 	}
 }
+
+// TEST
+static void tobin(int n)
+{
+	int	b = 8;
+	while (b--)
+	{
+		printf("%d", ((n >> b) & 1));
+	}
+	printf("\n");
+}
+// TEST
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -82,6 +95,7 @@ int	main(int argc, char **argv, char **envp)
 		b_exit(2);
 	while (1)
 	{
+		g_cmd->tokens = 0;
 		prompt = getenv("PWD");
 		prompt = ft_strjoin(prompt, " ~> ");
 		line = readline(prompt);
@@ -98,6 +112,8 @@ int	main(int argc, char **argv, char **envp)
 		g_cmd->name = cmdv[0];
 		g_cmd->argv = cmdv;
 		g_cmd->envp = parse_cmd();
+		search_tokens();
+		tobin(g_cmd->tokens); // TEST
 		free_tab(cmdv);
 	}
 	return (0);

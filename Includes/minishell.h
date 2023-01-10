@@ -19,11 +19,20 @@
 # include <readline/history.h>
 # include "../Libft/libft.h"
 
+typedef enum e_tokens
+{
+	QUOTES = 0x1,
+	DQUOTES = 0x2,
+	PIPE = 0x4,
+	REDIR = 0x8,
+}	t_tokens;
+
 typedef struct s_cmd
 {
 	char	*name;
 	char	**argv;
 	char	**envp;
+	char	tokens;
 	int		exit_code;
 }	t_cmd;
 
@@ -32,7 +41,7 @@ typedef struct s_cmd
 extern struct s_cmd	*g_cmd;
 
 /*
-** builtin
+* builtin
 */
 void	b_echo(void);
 void	b_exit(int n);
@@ -42,7 +51,7 @@ char	**b_export(char *env, char **envp);
 char	**b_unset(char *env_key, char **envp);
 
 /*
-** utils
+* utils
 */
 void	free_tab(char **tab);
 char	**copy_envp(char **envp);
@@ -50,14 +59,19 @@ char	*ft_getenv(char *key, char **envp);
 int		has_key(char *env_key, char **envp);
 
 /*
-** substitution
+* substitution
 */
 char	*search_substitution(char *line);
 
 /*
-** split_cmd
+* split_cmd
 */
 char	**split_cmd(char *cmd);
+
+/*
+* parsing
+*/
+void	search_tokens(void);
 
 // TEST
 // # include "leaks_checker/leaks.h"

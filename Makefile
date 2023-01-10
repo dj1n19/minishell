@@ -38,6 +38,7 @@ SRC = \
 		split_cmd.c \
 		substitution.c \
 		utils.c \
+		parsing.c
 
 INC = \
 		minishell.h
